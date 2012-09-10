@@ -13,8 +13,8 @@
     </target>
     <target name="wsimport-client-HelloWorldServiceService" depends="wsimport-init">
         <mkdir dir="${build.generated.dir}/jax-wsCache/HelloWorldServiceService"/>
-        <property name="wsdl-HelloWorldServiceService" location="xml-resources/web-service-references/HelloWorldServiceService/wsdl/HelloWorldServiceService.wsdl"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/HelloWorldServiceService" destdir="${build.generated.dir}/jax-wsCache/HelloWorldServiceService" wsdl="${wsdl-HelloWorldServiceService}" catalog="catalog.xml" extension="true" verbose="true" wsdlLocation="file:/C:/Users/Wojtek/Dropbox/DTU%20-%20MSc/3%20-%20Autumn%20'12/02267%20Software%20Development%20of%20Web%20Services%20E12/Week%202/HelloWorldServiceService.wsdl" xnocompile="true">
+        <property name="wsdl-HelloWorldServiceService" location="xml-resources/web-service-references/HelloWorldServiceService/wsdl/localhost_8080/HelloWorldService/HelloWorldServiceService.wsdl"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/HelloWorldServiceService" destdir="${build.generated.dir}/jax-wsCache/HelloWorldServiceService" wsdl="${wsdl-HelloWorldServiceService}" catalog="catalog.xml" extension="true" verbose="true" wsdlLocation="http://localhost:8080/HelloWorldService/HelloWorldServiceService?wsdl" xnocompile="true">
             <depends file="${wsdl-HelloWorldServiceService}"/>
             <produces dir="${build.generated.dir}/jax-wsCache/HelloWorldServiceService"/>
         </wsimport>

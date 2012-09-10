@@ -16,6 +16,9 @@
 <message name="divideResponse">
 <part name="parameters" element="tns:divideResponse"></part>
 </message>
+<message name="ArithmeticException">
+<part name="fault" element="tns:ArithmeticException"></part>
+</message>
 <message name="multiply">
 <part name="parameters" element="tns:multiply"></part>
 </message>
@@ -28,7 +31,7 @@
 <message name="subtractResponse">
 <part name="parameters" element="tns:subtractResponse"></part>
 </message>
-    <portType name="CalculatorService">
+<portType name="CalculatorService">
 <operation name="add">
 <input message="tns:add"></input>
 <output message="tns:addResponse"></output>
@@ -36,6 +39,7 @@
 <operation name="divide">
 <input message="tns:divide"></input>
 <output message="tns:divideResponse"></output>
+<fault message="tns:ArithmeticException" name="ArithmeticException"></fault>
 </operation>
 <operation name="multiply">
 <input message="tns:multiply"></input>
@@ -65,6 +69,9 @@
 <output>
 <soap:body use="literal"></soap:body>
 </output>
+<fault name="ArithmeticException">
+<soap:fault name="ArithmeticException" use="literal"></soap:fault>
+</fault>
 </operation>
 <operation name="multiply">
 <soap:operation soapAction=""></soap:operation>

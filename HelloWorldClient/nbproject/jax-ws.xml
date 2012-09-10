@@ -3,8 +3,8 @@
   <services/>
   <clients>
     <client name="HelloWorldServiceService">
-      <wsdl-url>file:/C:/Users/Wojtek/Dropbox/DTU%20-%20MSc/3%20-%20Autumn%20'12/02267%20Software%20Development%20of%20Web%20Services%20E12/Week%202/HelloWorldServiceService.wsdl</wsdl-url>
-      <local-wsdl-file>HelloWorldServiceService.wsdl</local-wsdl-file>
+      <wsdl-url>http://localhost:8080/HelloWorldService/HelloWorldServiceService?wsdl</wsdl-url>
+      <local-wsdl-file>localhost_8080/HelloWorldService/HelloWorldServiceService.wsdl</local-wsdl-file>
       <package-name>ws.helloworld</package-name>
       <catalog-file>catalog.xml</catalog-file>
       <wsimport-options>
@@ -18,7 +18,7 @@
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>wsdlLocation</wsimport-option-name>
-          <wsimport-option-value>file:/C:/Users/Wojtek/Dropbox/DTU%20-%20MSc/3%20-%20Autumn%20'12/02267%20Software%20Development%20of%20Web%20Services%20E12/Week%202/HelloWorldServiceService.wsdl</wsimport-option-value>
+          <wsimport-option-value>http://localhost:8080/HelloWorldService/HelloWorldServiceService?wsdl</wsimport-option-value>
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>xnocompile</wsimport-option-name>

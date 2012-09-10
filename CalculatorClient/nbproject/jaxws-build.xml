@@ -11,22 +11,22 @@
             <classpath path="${libs.jaxws21.classpath}"/>
         </taskdef>
     </target>
-    <target name="wsimport-client-ConvertTemperature.asmx" depends="wsimport-init">
-        <mkdir dir="${build.generated.dir}/jax-wsCache/ConvertTemperature.asmx"/>
-        <property name="wsdl-ConvertTemperature.asmx" location="xml-resources/web-service-references/ConvertTemperature.asmx/wsdl/ConvertTemperature.asmx.wsdl"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/ConvertTemperature.asmx" destdir="${build.generated.dir}/jax-wsCache/ConvertTemperature.asmx" wsdl="${wsdl-ConvertTemperature.asmx}" catalog="catalog.xml" extension="true" verbose="true" wsdlLocation="file:/C:/Users/Wojtek/Dropbox/DTU%20-%20MSc/3%20-%20Autumn%20'12/02267%20Software%20Development%20of%20Web%20Services%20E12/Week%202/ConvertTemperature.asmx.wsdl" xnocompile="true">
-            <depends file="${wsdl-ConvertTemperature.asmx}"/>
-            <produces dir="${build.generated.dir}/jax-wsCache/ConvertTemperature.asmx"/>
+    <target name="wsimport-client-CalculatorServiceService" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/CalculatorServiceService"/>
+        <property name="wsdl-CalculatorServiceService" location="xml-resources/web-service-references/CalculatorServiceService/wsdl/localhost_8080/CalculatorService/CalculatorServiceService.wsdl"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/CalculatorServiceService" destdir="${build.generated.dir}/jax-wsCache/CalculatorServiceService" wsdl="${wsdl-CalculatorServiceService}" catalog="catalog.xml" extension="true" verbose="true" wsdlLocation="http://localhost:8080/CalculatorService/CalculatorServiceService?wsdl" xnocompile="true">
+            <depends file="${wsdl-CalculatorServiceService}"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/CalculatorServiceService"/>
         </wsimport>
         <copy todir="${build.generated.sources.dir}/jax-ws">
-            <fileset dir="${build.generated.dir}/jax-wsCache/ConvertTemperature.asmx">
+            <fileset dir="${build.generated.dir}/jax-wsCache/CalculatorServiceService">
                 <include name="**/*.java"/>
             </fileset>
         </copy>
     </target>
-    <target name="wsimport-client-clean-ConvertTemperature.asmx" depends="-init-project">
-        <delete dir="${build.generated.dir}/jax-wsCache/ConvertTemperature.asmx"/>
-        <delete dir="${build.generated.sources.dir}/jax-ws/net/webservicex"/>
+    <target name="wsimport-client-clean-CalculatorServiceService" depends="-init-project">
+        <delete dir="${build.generated.dir}/jax-wsCache/CalculatorServiceService"/>
+        <delete dir="${build.generated.sources.dir}/jax-ws/ws/calculator"/>
     </target>
-    <target name="wsimport-client-generate" depends="wsimport-client-ConvertTemperature.asmx"/>
+    <target name="wsimport-client-generate" depends="wsimport-client-CalculatorServiceService"/>
 </project>
