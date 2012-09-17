@@ -18,8 +18,8 @@ public class CalculatorService {
     }
 
     public int divide(int op1, int op2) throws ArithmeticException {
-//       if (op2 == 0)
-//           throw new ArithmeticException();
+       if (op2 == 0)
+           throw new ArithmeticException();
        
         return op1 / op2;
     }

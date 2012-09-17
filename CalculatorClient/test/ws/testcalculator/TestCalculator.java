@@ -72,21 +72,15 @@ public class TestCalculator {
         }
     }
 
-    @Test(expected = ArithmeticException.class)
-    public void testDivideByZero() {
+    @Test//(expected = ArithmeticException.class)
+    public void testDivideByZero() throws ArithmeticException_Exception {
         ws.calculator.CalculatorServiceService service = new ws.calculator.CalculatorServiceService();
         ws.calculator.CalculatorService port = service.getCalculatorServicePort();
 
         int arg0 = 3;
         int arg1 = 0;
 
-//        int result = arg0/arg1;
-
-        try {
-            int result = port.divide(arg0, arg1);
-        } catch (ArithmeticException_Exception ex) {
-            Logger.getLogger(TestCalculator.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        int result = port.divide(arg0, arg1);
     }
 }
 
