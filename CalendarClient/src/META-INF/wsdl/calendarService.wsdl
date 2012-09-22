@@ -39,7 +39,7 @@
     </binding>
     <service name="calendarService">
         <port name="calendarServicePort" binding="tns:calendarServicePortTypeBinding">
-            <soap:address location="http://localhost:8080/CalendarService/calendarService"></soap:address>
+            <soap:address location="http://localhost:8070/CalendarService/calendarService"></soap:address>
         </port>
     </service>
 </definitions>

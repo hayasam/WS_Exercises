@@ -13,8 +13,8 @@
     </target>
     <target name="wsimport-client-calendarService" depends="wsimport-init">
         <mkdir dir="${build.generated.dir}/jax-wsCache/calendarService"/>
-        <property name="wsdl-calendarService" location="xml-resources/web-service-references/calendarService/wsdl/localhost_8080/CalendarService/calendarService.wsdl"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/calendarService" destdir="${build.generated.dir}/jax-wsCache/calendarService" wsdl="${wsdl-calendarService}" catalog="catalog.xml" extension="true" verbose="true" wsdlLocation="http://localhost:8080/CalendarService/calendarService?wsdl" xnocompile="true">
+        <property name="wsdl-calendarService" location="xml-resources/web-service-references/calendarService/wsdl/calendarService.wsdl"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/calendarService" destdir="${build.generated.dir}/jax-wsCache/calendarService" wsdl="${wsdl-calendarService}" catalog="catalog.xml" extension="true" verbose="true" wsdlLocation="file:/C:/Users/Wojtek/Dropbox/DTU%20-%20MSc/3%20-%20Autumn%20'12/02267%20Software%20Development%20of%20Web%20Services%20E12/Week%203/calendarService.wsdl" xnocompile="true">
             <depends file="${wsdl-calendarService}"/>
             <produces dir="${build.generated.dir}/jax-wsCache/calendarService"/>
         </wsimport>
