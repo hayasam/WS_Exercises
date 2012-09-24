@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jax-ws xmlns="http://www.netbeans.org/ns/jax-ws/1">
+  <services>
+    <service name="WhitePagesWebServiceFromWSDL">
+      <implementation-class>ws.whitepages.WhitePagesWebServiceFromWSDL</implementation-class>
+      <wsdl-url>file:/I:/Workspaces/NetBeansProjects/WS_Exercises/WhitePagesService/src/java/WhitePagesWSDL.wsdl</wsdl-url>
+      <local-wsdl-file>WhitePagesWSDL.wsdl</local-wsdl-file>
+      <service-name>WhitePagesWSDLService</service-name>
+      <port-name>WhitePagesWSDLPort</port-name>
+      <package-name>ws.whitepages</package-name>
+      <catalog-file>catalog.xml</catalog-file>
+      <use-provider>false</use-provider>
+      <wsimport-options>
+        <wsimport-option>
+          <wsimport-option-name>extension</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>verbose</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>xnocompile</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+      </wsimport-options>
+    </service>
+  </services>
+  <clients/>
+</jax-ws>
