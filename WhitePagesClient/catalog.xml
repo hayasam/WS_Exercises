@@ -4,3 +4,5 @@
     <system systemId="http://localhost:8080/WhitePagesService/WhitePagesWSDLService?wsdl" uri="xml-resources/web-service-references/WhitePagesWSDLService/wsdl/localhost_8080/WhitePagesService/WhitePagesWSDLService.wsdl"/>
 </catalog>
 
+
+

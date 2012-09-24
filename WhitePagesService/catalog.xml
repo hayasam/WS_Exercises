@@ -2,3 +2,5 @@
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
     <system systemId="file:/I:/Workspaces/NetBeansProjects/WS_Exercises/WhitePagesService/src/java/WhitePagesWSDL.wsdl" uri="src/conf/xml-resources/web-services/WhitePagesWebServiceFromWSDL/wsdl/WhitePagesWSDL.wsdl"/>
 </catalog>
+
+

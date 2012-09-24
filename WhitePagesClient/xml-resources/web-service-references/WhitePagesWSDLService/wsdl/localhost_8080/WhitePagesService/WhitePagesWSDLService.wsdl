@@ -16,8 +16,15 @@
                     <xsd:element name="city" type="xsd:string"></xsd:element>
                 </xsd:sequence>
             </xsd:complexType>
-            <xsd:element name="person" type="tns:personType"></xsd:element>
+            <xsd:element name="person" type="tns:personType" nillable="false"></xsd:element>
             <xsd:element name="status" type="xsd:string"></xsd:element>
+            <xsd:complexType name="addPersonFaultType">
+                <xsd:sequence>
+                    <xsd:element name="errorMessage" type="xsd:string"></xsd:element>
+                    <xsd:element name="person" type="tns:personType"></xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="addPersonFault" type="tns:addPersonFaultType"></xsd:element>
         </xsd:schema>
     </types>
     <message name="addPersonRequest">
@@ -26,10 +33,14 @@
     <message name="addPersonResponse">
         <part name="status" element="tns:status"></part>
     </message>
+    <message name="addPersonFault">
+        <part name="wpfault" element="tns:addPersonFault"></part>
+    </message>
     <portType name="WhitePagesWSDLPortType">
         <operation name="addPerson">
             <input name="input1" message="tns:addPersonRequest"></input>
             <output name="output1" message="tns:addPersonResponse"></output>
+            <fault name="fault1" message="tns:addPersonFault"></fault>
         </operation>
     </portType>
     <binding name="WhitePagesWSDLBinding" type="tns:WhitePagesWSDLPortType">
@@ -42,6 +53,9 @@
             <output name="output1">
                 <soap:body use="literal"></soap:body>
             </output>
+            <fault name="fault1">
+                <soap:fault name="fault1" use="literal"></soap:fault>
+            </fault>
         </operation>
     </binding>
     <service name="WhitePagesWSDLService">
