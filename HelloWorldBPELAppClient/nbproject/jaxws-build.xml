@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xalan="http://xml.apache.org/xslt" xmlns:j2seproject3="http://www.netbeans.org/ns/j2se-project/3" xmlns:jaxws="http://www.netbeans.org/ns/jax-ws/1">
+    <!--
+                ===================
+                JAX-WS WSIMPORT SECTION
+                ===================
+            -->
+    <target name="wsimport-init" depends="init">
+        <mkdir dir="${build.generated.sources.dir}/jax-ws"/>
+        <taskdef name="wsimport" classname="com.sun.tools.ws.ant.WsImport">
+            <classpath path="${libs.jaxws21.classpath}"/>
+        </taskdef>
+    </target>
+    <target name="wsimport-client-helloWorldPort" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/helloWorldPort"/>
+        <property name="wsdl-helloWorldPort" location="xml-resources/web-service-references/helloWorldPort/wsdl/localhost_9080/helloWorldService/helloWorldPort.wsdl"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/helloWorldPort" destdir="${build.generated.dir}/jax-wsCache/helloWorldPort" wsdl="${wsdl-helloWorldPort}" catalog="catalog.xml" extension="true" verbose="true" wsdlLocation="http://localhost:9080/helloWorldService/helloWorldPort?wsdl" xnocompile="true">
+            <depends file="${wsdl-helloWorldPort}"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/helloWorldPort"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/helloWorldPort">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-helloWorldPort" depends="-init-project">
+        <delete dir="${build.generated.dir}/jax-wsCache/helloWorldPort"/>
+        <delete dir="${build.generated.sources.dir}/jax-ws/ws/helloworld"/>
+    </target>
+    <target name="wsimport-client-generate" depends="wsimport-client-helloWorldPort"/>
+</project>
