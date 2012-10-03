@@ -3,3 +3,4 @@
     <system systemId="http://localhost:9080/hamAndEggsService/hamAndEggsPort?wsdl" uri="xml-resources/web-service-references/hamAndEggsPort/wsdl/localhost_9080/hamAndEggsService/hamAndEggsPort.wsdl"/>
 </catalog>
 
+

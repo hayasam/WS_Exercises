@@ -10,10 +10,23 @@
     xmlns:sxed="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor"
     xmlns:sxeh="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/ErrorHandling" xmlns:sxed2="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor2">
     <import namespace="http://hamandeggs.ws" location="hamAndEggs.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://enterprise.netbeans.org/bpel/CookServiceServiceWrapper" location="CookServiceServiceWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://cook.ws/" location="http://localhost:8080/CookApp/CookServiceService?wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://enterprise.netbeans.org/bpel/CleanerServiceServiceWrapper" location="CleanerServiceServiceWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://cleaner.ws/" location="http://localhost:8080/CleanerApp/CleanerServiceService?wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
     <partnerLinks>
+        <partnerLink name="PartnerLink3" xmlns:tns="http://enterprise.netbeans.org/bpel/CleanerServiceServiceWrapper" partnerLinkType="tns:CleanerServiceLinkType" partnerRole="CleanerServiceRole"/>
+        <partnerLink name="PartnerLink2" xmlns:tns="http://enterprise.netbeans.org/bpel/CookServiceServiceWrapper" partnerLinkType="tns:CookServiceLinkType" partnerRole="CookServiceRole"/>
         <partnerLink name="PartnerLink1" xmlns:tns="http://hamandeggs.ws" partnerLinkType="tns:hamAndEggs" myRole="hamAndEggsPortTypeRole"/>
     </partnerLinks>
     <variables>
+        <variable name="VentilateAirIn" xmlns:tns="http://cleaner.ws/" messageType="tns:ventilateAir"/>
+        <variable name="WashDishesOut" xmlns:tns="http://cleaner.ws/" messageType="tns:washDishesResponse"/>
+        <variable name="WashDishesIn" xmlns:tns="http://cleaner.ws/" messageType="tns:washDishes"/>
+        <variable name="BakeOut" xmlns:tns="http://cook.ws/" messageType="tns:bakeResponse"/>
+        <variable name="BakeIn" xmlns:tns="http://cook.ws/" messageType="tns:bake"/>
+        <variable name="BreakEggOut" xmlns:tns="http://cook.ws/" messageType="tns:breakEggResponse"/>
+        <variable name="BreakEggIn" xmlns:tns="http://cook.ws/" messageType="tns:breakEgg"/>
         <variable name="HamAndEggsOperationOut" xmlns:tns="http://hamandeggs.ws" messageType="tns:hamAndEggsOperationResponse"/>
         <variable name="HamAndEggsOperationIn" xmlns:tns="http://hamandeggs.ws" messageType="tns:hamAndEggsOperationRequest"/>
     </variables>
@@ -22,10 +35,33 @@
         <assign name="Assign1">
             <copy>
                 <from variable="HamAndEggsOperationIn" part="input"/>
+                <to>$BreakEggIn.parameters/arg0</to>
+            </copy>
+            <copy>
+                <from>30</from>
+                <to>$BakeIn.parameters/arg0</to>
+            </copy>
+            <copy>
+                <from>15</from>
+                <to>$WashDishesIn.parameters/arg0</to>
+            </copy>
+            <copy>
+                <from>60</from>
+                <to>$VentilateAirIn.parameters/arg0</to>
+            </copy>
+        </assign>
+        <invoke name="InvokeWashDishes" partnerLink="PartnerLink3" operation="washDishes" xmlns:tns="http://cleaner.ws/" portType="tns:CleanerService" inputVariable="WashDishesIn" outputVariable="WashDishesOut"/>
+        <invoke name="InvokeBreakEgg" partnerLink="PartnerLink2" operation="breakEgg" xmlns:tns="http://cook.ws/" portType="tns:CookService" inputVariable="BreakEggIn" outputVariable="BreakEggOut"/>
+        <invoke name="InvokeBake" partnerLink="PartnerLink2" operation="bake" xmlns:tns="http://cook.ws/" portType="tns:CookService" inputVariable="BakeIn" outputVariable="BakeOut"/>
+        <invoke name="InvokeVentilateAir" partnerLink="PartnerLink3" operation="ventilateAir" xmlns:tns="http://cleaner.ws/" portType="tns:CleanerService" inputVariable="VentilateAirIn"/>
+        <assign name="Assign2">
+            <copy>
+                <from>$BakeOut.parameters/return</from>
                 <to variable="HamAndEggsOperationOut" part="output"/>
             </copy>
         </assign>
         <reply name="Reply1" partnerLink="PartnerLink1" operation="hamAndEggsOperation" xmlns:tns="http://hamandeggs.ws" portType="tns:hamAndEggsPortType" variable="HamAndEggsOperationOut"/>
     </sequence>
 </process>
+
 

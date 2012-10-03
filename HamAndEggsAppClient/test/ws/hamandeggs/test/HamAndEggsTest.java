@@ -28,7 +28,7 @@ public class HamAndEggsTest {
     }
 
      @Test
-     public void hello() {
+     public void testHamAndEggs() {
 
          try {
              ws.hamandeggs.HamAndEggsService service = new ws.hamandeggs.HamAndEggsService();
@@ -39,9 +39,9 @@ public class HamAndEggsTest {
              int input = rand.nextInt(EGG_LIMIT);
 
              // TODO process result here
-             int result = port.hamAndEggsOperation(input);
+             boolean result = port.hamAndEggsOperation(input);
 
-             assertEquals(input, result);
+             assertEquals(true, result);
          } catch (Exception ex) {
              fail();
          }
