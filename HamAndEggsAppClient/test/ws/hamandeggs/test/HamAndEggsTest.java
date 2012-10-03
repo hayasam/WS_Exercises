@@ -39,9 +39,9 @@ public class HamAndEggsTest {
              int input = rand.nextInt(EGG_LIMIT);
 
              // TODO process result here
-             boolean result = port.hamAndEggsOperation(input);
+             int result = port.hamAndEggsOperation(input);
 
-             assertEquals(true, result);
+             assertEquals(input, result);
          } catch (Exception ex) {
              fail();
          }

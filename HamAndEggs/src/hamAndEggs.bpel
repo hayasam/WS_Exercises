@@ -21,7 +21,7 @@
         <receive name="Receive1" createInstance="yes" partnerLink="PartnerLink1" operation="hamAndEggsOperation" xmlns:tns="http://hamandeggs.ws" portType="tns:hamAndEggsPortType" variable="HamAndEggsOperationIn"/>
         <assign name="Assign1">
             <copy>
-                <from>true()</from>
+                <from variable="HamAndEggsOperationIn" part="input"/>
                 <to variable="HamAndEggsOperationOut" part="output"/>
             </copy>
         </assign>
