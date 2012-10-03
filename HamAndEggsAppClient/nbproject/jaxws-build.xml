@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xalan="http://xml.apache.org/xslt" xmlns:j2seproject3="http://www.netbeans.org/ns/j2se-project/3" xmlns:jaxws="http://www.netbeans.org/ns/jax-ws/1">
+    <!--
+                ===================
+                JAX-WS WSIMPORT SECTION
+                ===================
+            -->
+    <target name="wsimport-init" depends="init">
+        <mkdir dir="${build.generated.sources.dir}/jax-ws"/>
+        <taskdef name="wsimport" classname="com.sun.tools.ws.ant.WsImport">
+            <classpath path="${libs.jaxws21.classpath}"/>
+        </taskdef>
+    </target>
+    <target name="wsimport-client-hamAndEggsPort" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/hamAndEggsPort"/>
+        <property name="wsdl-hamAndEggsPort" location="xml-resources/web-service-references/hamAndEggsPort/wsdl/localhost_9080/hamAndEggsService/hamAndEggsPort.wsdl"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/hamAndEggsPort" destdir="${build.generated.dir}/jax-wsCache/hamAndEggsPort" wsdl="${wsdl-hamAndEggsPort}" catalog="catalog.xml" extension="true" verbose="true" wsdlLocation="http://localhost:9080/hamAndEggsService/hamAndEggsPort?wsdl" xnocompile="true">
+            <depends file="${wsdl-hamAndEggsPort}"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/hamAndEggsPort"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/hamAndEggsPort">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-hamAndEggsPort" depends="-init-project">
+        <delete dir="${build.generated.dir}/jax-wsCache/hamAndEggsPort"/>
+        <delete dir="${build.generated.sources.dir}/jax-ws/ws/hamandeggs"/>
+    </target>
+    <target name="wsimport-client-generate" depends="wsimport-client-hamAndEggsPort"/>
+</project>
