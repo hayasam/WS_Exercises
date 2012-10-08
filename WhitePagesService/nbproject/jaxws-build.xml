@@ -14,24 +14,24 @@
             <isset property="conf.dir"/>
         </condition>
     </target>
-    <target name="wsimport-service-WhitePagesWebServiceFromWSDL" depends="wsimport-init">
-        <mkdir dir="${build.generated.dir}/jax-wsCache/service/WhitePagesWebServiceFromWSDL"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/service/WhitePagesWebServiceFromWSDL" destdir="${build.generated.dir}/jax-wsCache/service/WhitePagesWebServiceFromWSDL" wsdl="${basedir}/${conf-dir}xml-resources/web-services/WhitePagesWebServiceFromWSDL/wsdl/WhitePagesWSDL.wsdl" catalog="catalog.xml" extension="true" verbose="true" xnocompile="true">
-            <depends file="${basedir}/${conf-dir}xml-resources/web-services/WhitePagesWebServiceFromWSDL/wsdl/WhitePagesWSDL.wsdl"/>
-            <produces dir="${build.generated.dir}/jax-wsCache/service/WhitePagesWebServiceFromWSDL"/>
+    <target name="wsimport-service-WhitePagesWebService" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/service/WhitePagesWebService"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/service/WhitePagesWebService" destdir="${build.generated.dir}/jax-wsCache/service/WhitePagesWebService" wsdl="${basedir}/${conf-dir}xml-resources/web-services/WhitePagesWebService/wsdl/WhitePagesWSDL.wsdl" catalog="catalog.xml" extension="true" verbose="true" xnocompile="true">
+            <depends file="${basedir}/${conf-dir}xml-resources/web-services/WhitePagesWebService/wsdl/WhitePagesWSDL.wsdl"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/service/WhitePagesWebService"/>
         </wsimport>
         <copy todir="${build.generated.sources.dir}/jax-ws">
-            <fileset dir="${build.generated.dir}/jax-wsCache/service/WhitePagesWebServiceFromWSDL">
+            <fileset dir="${build.generated.dir}/jax-wsCache/service/WhitePagesWebService">
                 <include name="**/*.java"/>
             </fileset>
         </copy>
-        <copy todir="${build.web.dir}/WEB-INF/wsdl/WhitePagesWebServiceFromWSDL">
-            <fileset dir="${basedir}/${conf-dir}xml-resources/web-services/WhitePagesWebServiceFromWSDL/wsdl/"/>
+        <copy todir="${build.web.dir}/WEB-INF/wsdl/WhitePagesWebService">
+            <fileset dir="${basedir}/${conf-dir}xml-resources/web-services/WhitePagesWebService/wsdl/"/>
         </copy>
     </target>
-    <target name="wsimport-service-clean-WhitePagesWebServiceFromWSDL" depends="-init-project">
+    <target name="wsimport-service-clean-WhitePagesWebService" depends="-init-project">
         <delete dir="${build.generated.sources.dir}/jax-ws/ws/whitepages"/>
-        <delete dir="${build.generated.dir}/jax-wsCache/service/WhitePagesWebServiceFromWSDL"/>
+        <delete dir="${build.generated.dir}/jax-wsCache/service/WhitePagesWebService"/>
     </target>
-    <target name="wsimport-service-generate" depends="wsimport-service-WhitePagesWebServiceFromWSDL"/>
+    <target name="wsimport-service-generate" depends="wsimport-service-WhitePagesWebService"/>
 </project>

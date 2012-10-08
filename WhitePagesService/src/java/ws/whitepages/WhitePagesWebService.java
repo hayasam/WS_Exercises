@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package ws.whitepages;
 
 import java.util.HashMap;
@@ -11,14 +10,15 @@ import javax.jws.WebService;
 
 /**
  *
- * @author kucharekm
+ * @author Wojtek
  */
-@WebService(serviceName = "WhitePagesWSDLService", portName = "WhitePagesWSDLPort", endpointInterface = "ws.whitepages.WhitePagesWSDLPortType", targetNamespace = "http://whitepages.ws", wsdlLocation = "WEB-INF/wsdl/WhitePagesWebServiceFromWSDL/WhitePagesWSDL.wsdl")
-public class WhitePagesWebServiceFromWSDL {
+@WebService(serviceName = "WhitePagesWSDLService", portName = "WhitePagesWSDLPortTypeBindingPort", endpointInterface = "ws.whitepages.WhitePagesWSDLPortType", targetNamespace = "http://whitepages.ws", wsdlLocation = "WEB-INF/wsdl/WhitePagesWebService/WhitePagesWSDL.wsdl")
+public class WhitePagesWebService {
 
     private Map<String, PersonType> personMap = new HashMap<String, PersonType>();
 
-    public java.lang.String addPerson(ws.whitepages.PersonType person) throws AddPersonFault {
+    public java.lang.String addPerson(ws.whitepages.PersonType person) throws ws.whitepages.AddPersonFault {
+
         if (person == null) {
             AddPersonFaultType faultInfo = new AddPersonFaultType();
             faultInfo.setErrorMessage("Person cannot be null");
@@ -49,4 +49,22 @@ public class WhitePagesWebServiceFromWSDL {
         }
     }
 
+    public ws.whitepages.PersonArrayType findPerson(ws.whitepages.PersonType person) {
+
+        PersonArrayType result = new PersonArrayType();
+
+        if (person == null) {
+            return result;
+        }
+
+        for (PersonType savedPerson : personMap.values()) {
+            if (savedPerson.firstName.equals(person.firstName)
+                    || savedPerson.lastName.equals(person.lastName)) {
+
+                result.person.add(savedPerson);
+            }
+        }
+
+        return result;
+    }
 }

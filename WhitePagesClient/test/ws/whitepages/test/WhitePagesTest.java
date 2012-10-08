@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
  */
 public class WhitePagesTest {
 
-    WhitePagesWSDLPortType port = (new ws.whitepages.WhitePagesWSDLService()).getWhitePagesWSDLPort();
+    WhitePagesWSDLPortType port = (new ws.whitepages.WhitePagesWSDLService()).getWhitePagesWSDLPortTypeBindingPort();
 
     @Test
     public void testAddPersonNull() {
@@ -53,6 +53,28 @@ public class WhitePagesTest {
 
             testPerson(person, port);
         }
+    }
+
+    @Test
+    public void testFindPersonExisiting() {
+
+        ws.whitepages.PersonType person = new ws.whitepages.PersonType();
+        person.setFirstName("Karol");
+        person.setLastName("Nowak");
+
+        testPerson(person, port);
+
+        // TODO initialize WS operation arguments here
+        ws.whitepages.PersonType input1 = new ws.whitepages.PersonType();
+
+        input1.setFirstName("Karol");
+
+        // TODO process result here
+        ws.whitepages.PersonArrayType result = port.findPerson(input1);
+        assertEquals(1, result.getPerson().size());
+        assertEquals("Karol", result.getPerson().get(0).getFirstName());
+        assertEquals("Nowak", result.getPerson().get(0).getLastName());
+
     }
 
     private void testPerson(PersonType person, WhitePagesWSDLPortType port) {

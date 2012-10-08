@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jax-ws xmlns="http://www.netbeans.org/ns/jax-ws/1">
   <services>
-    <service name="WhitePagesWebServiceFromWSDL">
-      <implementation-class>ws.whitepages.WhitePagesWebServiceFromWSDL</implementation-class>
-      <wsdl-url>file:/I:/Workspaces/NetBeansProjects/WS_Exercises/WhitePagesService/src/java/WhitePagesWSDL.wsdl</wsdl-url>
+    <service name="WhitePagesWebService">
+      <implementation-class>ws.whitepages.WhitePagesWebService</implementation-class>
+      <wsdl-url>file:/C:/Users/Wojtek/Documents/Git%20Repositories/WS_Exercises/WhitePagesService/src/java/WhitePagesWSDL.wsdl</wsdl-url>
       <local-wsdl-file>WhitePagesWSDL.wsdl</local-wsdl-file>
       <service-name>WhitePagesWSDLService</service-name>
-      <port-name>WhitePagesWSDLPort</port-name>
+      <port-name>WhitePagesWSDLPortTypeBindingPort</port-name>
       <package-name>ws.whitepages</package-name>
       <catalog-file>catalog.xml</catalog-file>
       <use-provider>false</use-provider>
