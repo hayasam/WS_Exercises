@@ -59,20 +59,27 @@ public class WhitePagesTest {
     public void testFindPersonExisiting() {
 
         ws.whitepages.PersonType person = new ws.whitepages.PersonType();
-        person.setFirstName("Karol");
+        ws.whitepages.AddressType personAddress = new ws.whitepages.AddressType();
+
+        person.setFirstName("Pawel");
         person.setLastName("Nowak");
         person.setPhone("1233");
 
+        personAddress.setStreet("Ulica");
+        personAddress.setPostcode("91-170");
+        personAddress.setCity("Lodz");
+
+        person.setAddress(personAddress);
         testPerson(person, port);
 
         ws.whitepages.PersonType input1 = new ws.whitepages.PersonType();
 
-        input1.setFirstName("Karol");
+        input1.setFirstName("Pawel");
 //        input1.setLastName("Nowak");
 
         ws.whitepages.PersonArrayType result = port.findPerson(input1);
         assertEquals(1, result.getPerson().size());
-        assertEquals("Karol", result.getPerson().get(0).getFirstName());
+        assertEquals("Pawel", result.getPerson().get(0).getFirstName());
         assertEquals("Nowak", result.getPerson().get(0).getLastName());
     }
 

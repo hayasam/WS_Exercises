@@ -86,7 +86,7 @@
     </binding>
     <service name="WhitePagesWSDLService">
         <port name="WhitePagesWSDLPortTypeBindingPort" binding="tns:WhitePagesWSDLPortTypeBinding">
-            <soap:address location="http://localhost:8080/WhitePagesService/WhitePagesWSDLService"></soap:address>
+            <soap:address location="http://localhost:8070/WhitePagesService/WhitePagesWSDLService"></soap:address>
         </port>
     </service>
 </definitions>

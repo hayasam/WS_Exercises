@@ -13,8 +13,8 @@
     </target>
     <target name="wsimport-client-WhitePagesWSDLService" depends="wsimport-init">
         <mkdir dir="${build.generated.dir}/jax-wsCache/WhitePagesWSDLService"/>
-        <property name="wsdl-WhitePagesWSDLService" location="xml-resources/web-service-references/WhitePagesWSDLService/wsdl/localhost_8080/WhitePagesService/WhitePagesWSDLService.wsdl"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/WhitePagesWSDLService" destdir="${build.generated.dir}/jax-wsCache/WhitePagesWSDLService" wsdl="${wsdl-WhitePagesWSDLService}" catalog="catalog.xml" extension="true" verbose="true" wsdlLocation="http://localhost:8080/WhitePagesService/WhitePagesWSDLService?wsdl" xnocompile="true">
+        <property name="wsdl-WhitePagesWSDLService" location="xml-resources/web-service-references/WhitePagesWSDLService/wsdl/WhitePagesWSDLService.wsdl"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/WhitePagesWSDLService" destdir="${build.generated.dir}/jax-wsCache/WhitePagesWSDLService" wsdl="${wsdl-WhitePagesWSDLService}" catalog="catalog.xml" extension="true" verbose="true" wsdlLocation="file:/C:/Users/Wojtek/Dropbox/DTU%20-%20MSc/3%20-%20Autumn%20'12/02267%20Software%20Development%20of%20Web%20Services%20E12/Week%204/WhitePagesWSDLService.wsdl" xnocompile="true">
             <depends file="${wsdl-WhitePagesWSDLService}"/>
             <produces dir="${build.generated.dir}/jax-wsCache/WhitePagesWSDLService"/>
         </wsimport>
