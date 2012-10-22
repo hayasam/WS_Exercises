@@ -35,6 +35,7 @@ public class WhitePagesWebService {
         }
 
         String key = person.getFirstName() + " " + person.getLastName();
+
         if (personMap.containsKey(key)) {
 
             AddPersonFaultType faultInfo = new AddPersonFaultType();
@@ -61,7 +62,7 @@ public class WhitePagesWebService {
             if (savedPerson.firstName.equals(person.firstName)
                     || savedPerson.lastName.equals(person.lastName)) {
 
-                result.person.add(savedPerson);
+                result.getPerson().add(savedPerson);
             }
         }
 
