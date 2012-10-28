@@ -49,25 +49,36 @@
                 <from>1</from>
                 <to>$BreakEggIn.parameters/arg0</to>
             </copy>
+            <copy>
+                <from>0</from>
+                <to variable="HamAndEggsOperationOut" part="output"/>
+            </copy>
         </assign>
         <invoke name="InvokeWashDishes" partnerLink="PartnerLink3" operation="washDishes" xmlns:tns="http://cleaner.ws/" portType="tns:CleanerService" inputVariable="WashDishesIn" outputVariable="WashDishesOut"/>
         <forEach name="ForEach1" parallel="no" counterName="ForEach1Counter">
             <startCounterValue>1</startCounterValue>
             <finalCounterValue>$HamAndEggsOperationIn.input</finalCounterValue>
             <scope name="Scope1">
+                <faultHandlers>
+                    <catchAll>
+                        <invoke name="Invoke1" partnerLink="PartnerLink3" operation="ventilateAir" xmlns:tns="http://cleaner.ws/" portType="tns:CleanerService" inputVariable="VentilateAirIn"/>
+                    </catchAll>
+                </faultHandlers>
                 <sequence name="Sequence1">
-                    <invoke name="InvokeBreakEgg" partnerLink="PartnerLink2" operation="breakEgg" portType="ns0:CookService" inputVariable="BreakEggIn" outputVariable="BreakEggOut"/>
+                    <invoke name="InvokeBreakEgg" partnerLink="PartnerLink2" operation="breakEgg" portType="ns0:CookService" inputVariable="BreakEggIn" outputVariable="BreakEggOut"></invoke>
+                    <assign name="Assign3">
+                        <copy>
+                            <from>$HamAndEggsOperationOut.output + 1</from>
+                            <to variable="HamAndEggsOperationOut" part="output"/>
+                        </copy>
+                    </assign>
                 </sequence>
             </scope>
         </forEach>
-        <invoke name="InvokeBake" partnerLink="PartnerLink2" operation="bake" xmlns:tns="http://cook.ws/" portType="tns:CookService" inputVariable="BakeIn" outputVariable="BakeOut"/>
-        <invoke name="InvokeVentilateAir" partnerLink="PartnerLink3" operation="ventilateAir" xmlns:tns="http://cleaner.ws/" portType="tns:CleanerService" inputVariable="VentilateAirIn"/>
-        <assign name="Assign2">
-            <copy>
-                <from>$BakeOut.parameters/return</from>
-                <to variable="HamAndEggsOperationOut" part="output"/>
-            </copy>
-        </assign>
+        <flow name="Flow1">
+            <invoke name="InvokeBake" partnerLink="PartnerLink2" operation="bake" portType="ns0:CookService" inputVariable="BakeIn" outputVariable="BakeOut"/>
+            <invoke name="InvokeVentilateAir" partnerLink="PartnerLink3" operation="ventilateAir" xmlns:tns="http://cleaner.ws/" portType="tns:CleanerService" inputVariable="VentilateAirIn"/>
+        </flow>
         <reply name="Reply1" partnerLink="PartnerLink1" operation="hamAndEggsOperation" xmlns:tns="http://hamandeggs.ws" portType="tns:hamAndEggsPortType" variable="HamAndEggsOperationOut"/>
     </sequence>
 </process>

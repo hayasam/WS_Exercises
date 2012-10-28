@@ -30,7 +30,6 @@ public class HamAndEggsTest {
      @Test
      public void testHamAndEggs() {
 
-//         try {
              ws.hamandeggs.HamAndEggsService service = new ws.hamandeggs.HamAndEggsService();
              ws.hamandeggs.HamAndEggsPortType port = service.getHamAndEggsPort();
 
@@ -39,12 +38,14 @@ public class HamAndEggsTest {
              int input = rand.nextInt(EGG_LIMIT);
 
              // TODO process result here
-             boolean result = port.hamAndEggsOperation(input);
+             int result = port.hamAndEggsOperation(input);
 
-             assertEquals(true, result);
-//         } catch (Exception ex) {
-//             fail();
-//         }
+             if (input % 2 == 0) {
+                assertEquals(input/2, result);
+             } else {
+                 assertTrue(((input-1)/2 == result) || ((input+1)/2 == result));
+             }
+
 
      }
 

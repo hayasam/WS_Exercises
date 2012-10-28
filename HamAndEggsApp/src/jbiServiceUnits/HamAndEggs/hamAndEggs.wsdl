@@ -8,7 +8,7 @@
         <part name="input" type="xsd:int"/>
     </message>
     <message name="hamAndEggsOperationResponse">
-        <part name="output" type="xsd:boolean"/>
+        <part name="output" type="xsd:int"/>
     </message>
     <portType name="hamAndEggsPortType">
         <operation name="hamAndEggsOperation">
@@ -40,6 +40,7 @@ A partner link type characterizes the conversational relationship between two se
         <plnk:role name="hamAndEggsPortTypeRole" portType="tns:hamAndEggsPortType"/>
     </plnk:partnerLinkType>
 </definitions>
+
 
 
 

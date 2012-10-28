@@ -3,7 +3,7 @@
   <types>
   </types>
   <message name="hamAndEggsOperationResponse">
-    <part name="output" type="xsd:boolean">
+    <part name="output" type="xsd:int">
     </part>
   </message>
   <message name="hamAndEggsOperationRequest">

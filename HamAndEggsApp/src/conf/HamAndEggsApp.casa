@@ -9,7 +9,7 @@
         <endpoint display-name="PartnerLink2" endpoint-name="CookServiceRole_partnerRole" file-path="hamAndEggs.bpel" interface-name="ns2:CookService" name="endpoint6" process-name="hamAndEggs" service-name="ns4:PartnerLink2"/>
     </endpoints>
     <service-units>
-        <service-engine-service-unit artifacts-zip="HamAndEggs.jar" component-name="sun-bpel-engine" defined="true" description="Represents this Service Unit" internal="true" name="HamAndEggsApp-HamAndEggs" unit-name="HamAndEggs" unknown="false" x="190" y="193">
+        <service-engine-service-unit artifacts-zip="HamAndEggs.jar" component-name="sun-bpel-engine" defined="true" description="Represents this Service Unit" internal="true" name="HamAndEggsApp-HamAndEggs" unit-name="HamAndEggs" unknown="false" x="208" y="209">
             <provides endpoint="endpoint4"/>
             <consumes endpoint="endpoint5"/>
             <consumes endpoint="endpoint6"/>

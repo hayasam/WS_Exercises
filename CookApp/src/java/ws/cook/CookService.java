@@ -13,8 +13,16 @@ import javax.jws.WebService;
 @WebService()
 public class CookService {
 
-    public boolean breakEgg(int numberOfEggs) {
+    private static int eggCounter = 1;
 
+    public boolean breakEgg(int numberOfEggs) throws EggSmellsBadFault {
+
+        if (eggCounter == 2) {
+            eggCounter = 1;
+            throw new EggSmellsBadFault("error", "eggSmellsBad");
+        } else {
+            eggCounter++;
+        }
         // some logic
         System.out.println("Breaking the eggs...");
 
