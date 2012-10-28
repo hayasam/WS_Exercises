@@ -8,7 +8,7 @@
     xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
     xmlns:sxt="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Trace" 
     xmlns:sxed="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor"
-    xmlns:sxeh="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/ErrorHandling" xmlns:sxed2="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor2">
+    xmlns:sxeh="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/ErrorHandling" xmlns:sxed2="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor2" xmlns:ns0="http://cook.ws/">
     <import namespace="http://hamandeggs.ws" location="hamAndEggs.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
     <import namespace="http://enterprise.netbeans.org/bpel/CookServiceServiceWrapper" location="CookServiceServiceWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
     <import namespace="http://cook.ws/" location="http://localhost:8080/CookApp/CookServiceService?wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
@@ -34,10 +34,6 @@
         <receive name="Receive1" createInstance="yes" partnerLink="PartnerLink1" operation="hamAndEggsOperation" xmlns:tns="http://hamandeggs.ws" portType="tns:hamAndEggsPortType" variable="HamAndEggsOperationIn"/>
         <assign name="Assign1">
             <copy>
-                <from variable="HamAndEggsOperationIn" part="input"/>
-                <to>$BreakEggIn.parameters/arg0</to>
-            </copy>
-            <copy>
                 <from>30</from>
                 <to>$BakeIn.parameters/arg0</to>
             </copy>
@@ -49,9 +45,21 @@
                 <from>60</from>
                 <to>$VentilateAirIn.parameters/arg0</to>
             </copy>
+            <copy>
+                <from>1</from>
+                <to>$BreakEggIn.parameters/arg0</to>
+            </copy>
         </assign>
         <invoke name="InvokeWashDishes" partnerLink="PartnerLink3" operation="washDishes" xmlns:tns="http://cleaner.ws/" portType="tns:CleanerService" inputVariable="WashDishesIn" outputVariable="WashDishesOut"/>
-        <invoke name="InvokeBreakEgg" partnerLink="PartnerLink2" operation="breakEgg" xmlns:tns="http://cook.ws/" portType="tns:CookService" inputVariable="BreakEggIn" outputVariable="BreakEggOut"/>
+        <forEach name="ForEach1" parallel="no" counterName="ForEach1Counter">
+            <startCounterValue>1</startCounterValue>
+            <finalCounterValue>$HamAndEggsOperationIn.input</finalCounterValue>
+            <scope name="Scope1">
+                <sequence name="Sequence1">
+                    <invoke name="InvokeBreakEgg" partnerLink="PartnerLink2" operation="breakEgg" portType="ns0:CookService" inputVariable="BreakEggIn" outputVariable="BreakEggOut"/>
+                </sequence>
+            </scope>
+        </forEach>
         <invoke name="InvokeBake" partnerLink="PartnerLink2" operation="bake" xmlns:tns="http://cook.ws/" portType="tns:CookService" inputVariable="BakeIn" outputVariable="BakeOut"/>
         <invoke name="InvokeVentilateAir" partnerLink="PartnerLink3" operation="ventilateAir" xmlns:tns="http://cleaner.ws/" portType="tns:CleanerService" inputVariable="VentilateAirIn"/>
         <assign name="Assign2">
@@ -63,5 +71,6 @@
         <reply name="Reply1" partnerLink="PartnerLink1" operation="hamAndEggsOperation" xmlns:tns="http://hamandeggs.ws" portType="tns:hamAndEggsPortType" variable="HamAndEggsOperationOut"/>
     </sequence>
 </process>
+
 
 

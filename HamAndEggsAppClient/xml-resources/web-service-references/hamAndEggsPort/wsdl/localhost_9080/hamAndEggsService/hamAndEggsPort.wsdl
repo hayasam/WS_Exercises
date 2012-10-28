@@ -32,7 +32,7 @@
   </binding>
   <service name="hamAndEggsService">
     <port name="hamAndEggsPort" binding="tns:hamAndEggsBinding">
-      <soap:address location="http://ptc184.tt.com.pl:9080/hamAndEggsService/hamAndEggsPort"/>
+      <soap:address location="http://Wojtek-PC:9080/hamAndEggsService/hamAndEggsPort"/>
     </port>
   </service>
     <plnk:partnerLinkType name="hamAndEggs">

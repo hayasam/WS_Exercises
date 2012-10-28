@@ -30,7 +30,7 @@ public class HamAndEggsTest {
      @Test
      public void testHamAndEggs() {
 
-         try {
+//         try {
              ws.hamandeggs.HamAndEggsService service = new ws.hamandeggs.HamAndEggsService();
              ws.hamandeggs.HamAndEggsPortType port = service.getHamAndEggsPort();
 
@@ -42,9 +42,9 @@ public class HamAndEggsTest {
              boolean result = port.hamAndEggsOperation(input);
 
              assertEquals(true, result);
-         } catch (Exception ex) {
-             fail();
-         }
+//         } catch (Exception ex) {
+//             fail();
+//         }
 
      }
 
